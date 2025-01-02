@@ -73,7 +73,7 @@ const Signup = () => {
     return (
         <section className="bg-white h-[100vh] ">
             <div className="flex flex-col items-center justify-center p-2 mx-auto md:h-[90vh] lg:py-0">
-                <h1 className="text-center text-xl text-black mb-4">
+                <h1 className="text-center text-xl  font-bold text-black mb-4">
                     Create your account
                 </h1>
                 <div className="w-full border border-gray-300 text-black bg-white rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0">

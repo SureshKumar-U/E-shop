@@ -13,10 +13,14 @@ const userSchema = new mongoose.Schema({
     password :{
         type :String,
         required: true
+    },
+    isAdmin :{
+        type: Boolean,
+        default : false
     }
 
 
 },{timestamps: true})
 
-const userModel =mongoose.models.users || mongoose.model("users", userSchema)
-module.exports = userModel
+const userModel =mongoose.models.users || mongoose.model("User", userSchema)
+export default  userModel;

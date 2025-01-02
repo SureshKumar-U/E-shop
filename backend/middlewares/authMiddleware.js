@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 const authMiddleware = (req, res) => {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
 
-
         try {
             const Authheaders = req.headers.authorization.trim()
             const token = Authheaders.split(' ')[1]

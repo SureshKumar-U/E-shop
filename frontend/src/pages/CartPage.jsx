@@ -3,15 +3,19 @@ import cartItemsdata from "./cartitems"
 import CartItem from "./../components/CartItem"
 import React from "react"
 import Navbar from "./../components/Navbar"
+import { useDispatch, useSelector } from "react-redux"
+import { removeItem } from "../redux/slices/cartSlice"
 const Cartpage = () => {
 
-
+    const {cartItems} = useSelector(state=>state.cart)
+    const dispatch = useDispatch()
+    const removeItemHandler = (id) => {
+        dispatch(removeItem(id))
+    }
     return (
         <>
         <Navbar/>
             <div className="max-w-6xl mx-auto px-4 py-8">
-
-   
                 <header className="mb-2">
                     <h4 className=" font-bold text-gray-800">Shopping Cart</h4>
                 </header>
@@ -21,9 +25,9 @@ const Cartpage = () => {
                     <div className="space-y-4">
                         {/* <!-- Cart Item --> */}
 
-                  { cartItemsdata.length ?  cartItemsdata.map(item=>{
+                  { cartItems.length ?  cartItems.map(item=>{
                     return (
-                         <CartItem itemName ={item.name} itemPrice = {item.price}/>
+                         <CartItem  id = {item._id}  removeItemHandler={removeItemHandler}image={item.image} itemName ={item.name} itemPrice = {item.price}/>
                     )
                   }):<>No data found</>}
                         

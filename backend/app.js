@@ -4,17 +4,16 @@ const { mongoose } = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv")
 dotenv.config()
+const morgan = require('morgan')
+const {connectDB} = require("./config/DbConfig")
 const productRoutes = require("./routes/product.routes")
-
-app.use(cors()) //accepts all requests from any domain
+connectDB()
+const PORT = process.env.PORT || 8000
+app.use(morgan('dev'))
+app.use(cors()) //accepts all rewwquests from any domain
 app.use(express.json())
-
 
 app.use("/api/v1/products", productRoutes)
 
-mongoose.connect(process.env.MongoDB_URI).
-then(()=>console.log("dbconnected"))
-.catch(()=>console.log("error occured while connecting to db"))
 
-
-app.listen(8080,()=>console.log("server started on 8080"))
+app.listen(PORT,()=>console.log(`server started on ${PORT}`))

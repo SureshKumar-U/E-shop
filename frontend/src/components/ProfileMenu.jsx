@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 
 
 const ProfileMenu = ({ isMenuOpen, setMenuOpen, login }) => {
-
-
-
     return (
         <div >
             {login &&
