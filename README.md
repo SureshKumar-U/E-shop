@@ -1,0 +1,41 @@
+# E-shop
+
+E-shop is an e-commerce application built with a Node.js backend and a React frontend.
+
+## Features
+
+- User authentication (login and signup)
+- Product listing
+- Product details
+- Shopping cart
+
+## Technologies Used
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT for authentication
+- CORS for handling cross-origin requests
+
+### Frontend
+
+- React
+- React Router
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed on your machine
+- MongoDB installed and running
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/E-shop.git
+cd E-shop
