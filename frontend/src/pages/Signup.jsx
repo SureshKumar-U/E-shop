@@ -1,12 +1,15 @@
 
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-
+import {useSignupMutation} from "../redux/slices/userApiSlice"
+import { saveUser } from "../redux/slices/userSlice"
+import { useDispatch } from "react-redux"
 const Signup = () => {
 
     const [user,setUser] = useState({email:"",password:""})
     const [validationerrors, setValidationerrors] = useState({})
-
+    const [signup] = useSignupMutation()  
+    const dispatch = useDispatch()
     const submitHandler = async(e)=>{
     e.preventDefault()
      const error = validator(user.email,user.password)
@@ -14,19 +17,22 @@ const Signup = () => {
         return  //restrict api call when error exist
      }
 
-     const response = await fetch("http://localhost:8080/api/signup",{
-        method:"post",
-        body: JSON.stringify(user)
-     })
-     const {status,message} = await response.json()
-
-     if(status !== 200){
-        alert(message)
-        return
+     try{
+       const response = await signup(user).unwrap()
+         console.log(response)
+        //  dispatch(saveUser(response))
      }
-     alert(message)
-     setUser({email:"", password:""})
-     router.push("/")
+     catch(err){
+         console.log(err)
+     }
+
+    //  if(status !== 200){
+    //     alert(message)
+    //     return
+    //  }
+    //  alert(message)
+    //  setUser({email:"", password:""})
+    //  router.push("/")
 
 
      
@@ -81,20 +87,24 @@ const Signup = () => {
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label for="email" className="block mb-2 text-sm font-medium">Email</label>
-                                <input type="email" name="email" id="email" className="border border-gray-300  rounded-lg focus:border-blue-500  focus:outline-none block w-full p-1" 
-                                onChange={changeHandler}/>
+                                <input type="email"
+                                 name="email" 
+                                 id="email" 
+                                 className="placeholder:text-xs border border-gray-300  rounded-lg focus:border-blue-500  focus:outline-none block w-full p-1" 
+                                 placeholder="Enter email"
+                                 onChange={changeHandler}/>
                             </div>
                             <div>
                                 <label for="password" className="block mb-2 text-sm font-medium text-black" >Password</label>
                                 <input type="password" name="password" id="password" 
                                 placeholder="Enter password" 
-                                className=" border border-gray-300  rounded-lg focus:border-blue-500  focus:outline-none block w-full p-1"
+                                className="placeholder:text-xs border border-gray-300  rounded-lg focus:border-blue-500  focus:outline-none block w-full p-1"
                                 onChange={changeHandler} />
                             </div>
                         
                             <button type="button"
                              className="w-full text-white bg-blue-900 hover:bg-yellow-600  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                             onClick={submitHandler}>Login to your account</button>   
+                             onClick={submitHandler}>Create your account</button>   
                                                      <p className="text-sm font-light ">
                                 Already have an account? <Link to="/login" className="font-medium text-blue-600 hover:underline">Login</Link>
                             </p>

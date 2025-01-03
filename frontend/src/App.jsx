@@ -8,8 +8,6 @@ import Cart from "./pages/CartPage"
 import Product from "./pages/ProductDetails"
 
 function App() {
-
-
   return (
     <>
     <BrowserRouter>
@@ -20,7 +18,6 @@ function App() {
       <Route path="/cart" element = {<Cart/>} />
       <Route path="/product/:id" element = {<Product/>} />
     </Routes>
-
     </BrowserRouter>
 
 

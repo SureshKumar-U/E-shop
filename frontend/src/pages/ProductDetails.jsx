@@ -13,13 +13,20 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const {cartItems} = useSelector(state => state.cart)
   const dispatch = useDispatch()
+  const [quantity,setQuatntity] = useState(1)
 
   const clickHandler = ()=>{
     try{
-      dispatch(addItem(product?.data))
+      dispatch(addItem({...product?.data,quantity}))
     }catch(error){
       console.log(error)
   }
+}  
+
+const changeHandler = (e)=>{
+  const quantity = e.target.value
+  dispatch(addItem({...product?.data,quantity}))
+
 }
   return (
     <>
@@ -85,7 +92,7 @@ const ProductDetails = () => {
                       Add to Cart
                     </button> : <button className="flex-1 bg-gray-200 rounded-md hover:bg-gray-300"
                     onClick = {()=>navigate("/cart")}>Go to Cart</button>}
-     <select   className="w-25 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 max-h-40 overflow-y-auto">
+     <select onChange={changeHandler}  className="w-25 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 max-h-40 overflow-y-auto">
   {Array(product?.data?.countInStock).fill(null).map((item, index) => (
     <option  className="block px-4 py-2 text-sm text-gray-700" key={index + 1} value={index + 1}>
       {index + 1}

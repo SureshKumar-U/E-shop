@@ -1,7 +1,7 @@
-const userModel = require("./../models/usersModel")
-const bcrypt = require("bcryptjs")
-
-const login = async (request, response) => {
+import bcrypt from "bcrypt"
+import userModel from "../models/usersModel.js"
+import jwt from "jsonwebtoken"
+export const loginController = async (request, response) => {
     try {
         const { email, password } =   request.body
         if (!email || !password) {
@@ -19,7 +19,8 @@ const login = async (request, response) => {
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
             expiresIn: '1h',
         })
-        return response.status(400).json({ status:200, message: "Login successfull", token: token })
+        user.password = undefined
+        return response.status(200).json({ status:200, message: "Login successfull", user })
     }
     catch (err) {
         return response.status(400).json({ status: 500, message: err.message })
@@ -29,11 +30,11 @@ const login = async (request, response) => {
 
 
 
-export const signup = async(request,response)=>{
-
+export const signUpController = async(request,response)=>{
     try{
-    
-        const {email, password} = req.body
+        const {email, password} = request.body
+
+       
         //validate the email and password
          if(!email || !password){
             return  response.status(400).json({status:400, message:"All fields are mandatory"})
@@ -45,10 +46,12 @@ export const signup = async(request,response)=>{
         }
         //create user,if user was not exists
         const hashpassword = bcrypt.hashSync(password, 10)
-        await userModel.create({email:email,password:hashpassword})
+       const newUser = new userModel({email:email,password:hashpassword})
+        await newUser.save()
         return response.json({status:200,message:"user created successfully"})
 
     }catch(err){
+        console.log(err)
         return  response.status(500).json({status:"500", message:err.message})
     }
 }
