@@ -23,7 +23,9 @@ E-shop is an e-commerce application built with a Node.js backend and a React fro
 ### Frontend
 
 - React
+- RTK Query 
 - React Router
+- Tailwindcss
 
 ## Getting Started
 
