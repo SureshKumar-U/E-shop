@@ -22,15 +22,9 @@ E-shop is an e-commerce application built with a Node.js backend and a React fro
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository :
 
 ```bash
 git clone https://github.com/your-username/E-shop.git
-2. Navigate into the project directory:
-    - Run react app
-       - cd E-shop/frontend
-       - npm run dev
-    - Run Backend app
-      - cd E-shop/backend
-      - npm run dev
-2. Nav
+
+
