@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "./../components/Navbar"
 import { useGetAllProductsQuery } from "../redux/slices/productApiSlice"
-import AlertMessage from "../components/AlertMessage"
 import { addItem } from "../redux/slices/cartSlice"
 import Footer from "../components/Footer"
 import { useDispatch } from "react-redux"
@@ -46,8 +45,6 @@ const Products = () => {
   }
   return (
     <div className="w-100  min-h-[100vh]">
-      <Navbar />
-      
       <div className="container mx-auto px-10 mt-2 border-box" >
         <p className="font-semibold">Products</p>
         <div className="mb-4  col-span-12 mt-2 md:flex-nowrap">

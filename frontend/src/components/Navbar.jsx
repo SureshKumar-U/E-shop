@@ -30,7 +30,7 @@ const Navbar = () => {
                         <button className="text-white border border-white px-3 py-1 rounded-sm relative" onClick={() => navigate("/login")}>  
                             <ShoppingCart /></button>
                         {login &&<ProfileMenu  isMenuOpen ={isMenuOpen}setMenuOpen= {setMenuOpen} login={login}/>  }
-                        {!login && pathname != "/login" && <button className="text-sm bg-white py-0.5 px-4 rounded" onClick={()=>navigate("/login")}>Login</button>}
+                        {!login && pathname != "/login" && pathname != "/signup" && <button className="text-sm bg-white py-0.5 px-4 rounded" onClick={()=>navigate("/login")}>Login</button>}
                     </div>
                 </div>
             </div>

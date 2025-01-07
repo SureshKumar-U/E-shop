@@ -4,14 +4,17 @@ import {corsConfiguration} from "./config/corsConfig.js"
 import  dotenv from "dotenv"
 dotenv.config()
 import morgan from 'morgan'
+import {logger} from "./middlewares/loggerMiddleware.js"
 import {connectDB} from "./config/DbConfig.js"
 import productRoutes  from "./routes/product.routes.js"
 import userRoutes from "./routes/user.routes.js"
 connectDB()
 const PORT = process.env.PORT || 8000
 app.use(morgan('dev'))
+app.use(logger)
 app.use(corsConfiguration()) 
-app.use(express.json())
+app.use(express.json()) 
+const date = new Date()
 
 app.use("/api/v1/products", productRoutes)
 app.use("/api/v1/users", userRoutes)

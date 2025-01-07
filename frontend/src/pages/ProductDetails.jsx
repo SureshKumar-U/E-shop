@@ -31,7 +31,6 @@ const changeHandler = (e)=>{
   return (
     <>
       <div className='w-full min-h-screen bg-gray-50'>
-        <Navbar />
         <div className="container mx-auto px-2 mt-1 ">
           <Link
             className="bg-blue-900 text-sm px-2 py-1 text-sm rounded-md text-white hover:bg-blue-800 transition duration-300 mb-2 inline-block"
