@@ -132,7 +132,7 @@ const changeHandler = (e)=>{
             </div>
           )}
         </div>
-        <Footer/>
+  
       </div>
   
     </>

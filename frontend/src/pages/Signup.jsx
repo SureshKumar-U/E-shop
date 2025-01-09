@@ -2,21 +2,23 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import {useSignupMutation} from "../redux/slices/userApiSlice"
-import { saveUser } from "../redux/slices/userSlice"
+import { saveUser } from "../redux/slices/auth.slice"
 import { useDispatch } from "react-redux"
+import { validator } from "../utils/validations"
 const Signup = () => {
 
     const [user,setUser] = useState({email:"",password:""})
     const [validationerrors, setValidationerrors] = useState({})
     const [signup] = useSignupMutation()  
     const dispatch = useDispatch()
+
     const submitHandler = async(e)=>{
     e.preventDefault()
-     const error = validator(user.email,user.password)
-     if(Object.keys(error).length != 0){
+     const errors = validator(user.email,user.password)
+     if(Object.keys(errors).length != 0){
         return  //restrict api call when error exist
      }
-
+     //make an api call to signup
      try{
        const response = await signup(user).unwrap()
          console.log(response)
@@ -48,42 +50,14 @@ const Signup = () => {
 
     }
 
-    const validator = (email,password)=>{
-       const  error = {}
-        const emailRegex =/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        const passwordRegex =  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{8,}$/
-        if(!email){
-            error.email = 'Email is required'
-           
-        }
-        else if(!emailRegex.test(email)){
-            error.email = "Email is invalid"
-
-        }
-        if (!password){
-            error.password = "Password is required"
-        
-        }
-        else if(!passwordRegex.test(password)){
-            error.password = "password is invalid"
-        }
-        setValidationerrors(error)
-        return error
-
-
-
-
-
-    }
-
     return (
-        <section className="bg-white h-[100vh] ">
-            <div className="flex flex-col items-center justify-center p-2 mx-auto md:h-[90vh] lg:py-0">
-                <h1 className="text-center text-xl  font-bold text-black mb-4">
+        <section className="bg-white h-[82.5vh] flex items-center ">
+            <div className="flex flex-col items-center justify-center p-2 mx-auto lg:py-0">
+                <h1 className="text-center text-lg font-bold text-black mb-3">
                     Create your account
                 </h1>
-                <div className="w-full border border-gray-300 text-black bg-white rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
-                    <div className="p-5 space-y-4 md:space-y-6 ">
+                <div className="w-[380px] border border-gray-300 text-black bg-white rounded-md shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
+                    <div className="p-4 space-y-4 md:space-y-6 ">
                         <form className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label for="email" className="block mb-2 text-sm font-medium">Email</label>

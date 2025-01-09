@@ -1,5 +1,6 @@
 import cors from 'cors';
  export const corsConfiguration = ()=>{
+    
     return cors({
         //origin --> it tells  that from which origins users can access your api
         origin :(origin,callback)=>{

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Link, useNavigate } from "react-router-dom"
+import Rating from './Rating'
 
 const ProductsList = ({ products, clickHandler, cartItems }) => {
 
@@ -16,25 +17,19 @@ const ProductsList = ({ products, clickHandler, cartItems }) => {
               <img
                 src={product.image}
                 alt="Product 1"
-                className="!h-[100px] 0bject-cover mx-auto"
+                className="!h-[120px] "
               />
-              <div className="p-2 mt-2 flex-grow">
+              <div className=" mt-2 flex-grow">
                 <Link className="text-xs  text-slate-900  cursor-pointer"
                   to={`/product/${product._id}`}
-                >{product.name.slice(0, 15)}...</Link>
+                >{product.name.slice(0, 18)}...</Link>
                 <p className="text-gray-600 text-sm ">${product.price}</p>
               </div>
+              
+              <Rating rating={product?.rating} />
+              <p className='text-sm'>{product.numReviews} reviews</p>
 
-              {cartItems.find(item => item.id == product.id) ? <button
-                className="mt-1 text-sm w-full bg-yellow-400 text-slate py-1 rounded hover:bg-yellow-500"
-                onClick={() => { clickHandler(product) }}>
-                Go to cart
-              </button> : <button
-                className="mt-1 text-sm w-full bg-yellow-400 text-slate py-1 rounded hover:bg-yellow-500"
-                onClick={() => { clickHandler(product) }}
-              >
-                Add to cart
-              </button>}
+              
 
             </div>
 

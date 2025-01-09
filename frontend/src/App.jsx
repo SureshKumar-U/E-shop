@@ -11,12 +11,12 @@ import AlertContainer from './components/AlertContainer'
 import Navbar from './components/Navbar'
 function App() {
   return (
-    <>
-      <AlertContainer/>
+    <div >
+      {/* <AlertContainer/> */}
       <Navbar/>
       <Outlet/>
       <Footer/>
-    </>
+    </div>
   )
 }
 

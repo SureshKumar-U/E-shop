@@ -11,7 +11,6 @@ import userRoutes from "./routes/user.routes.js"
 connectDB()
 const PORT = process.env.PORT || 8000
 app.use(morgan('dev'))
-app.use(logger)
 app.use(corsConfiguration()) 
 app.use(express.json()) 
 const date = new Date()

@@ -6,22 +6,22 @@ const initialState = {
   };
 
 
-const userSlice = createSlice({
-  name: 'user',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
     saveUser(state, action) {
       const user = action.payload;
-      state.user = user;
+      state.auth = user;
       localStorage.setItem("userInfo", JSON.stringify(user));
     },
     
     deleteUser(state,action) {
-      state.user = "";
+      state.auth = "";
       localStorage.removeItem("userInfo",)
     },
   },
 });
 
-export const {saveUser,deleteUser} = userSlice.actions;
-export default userSlice.reducer;
+export const {saveUser,deleteUser} = authSlice.actions;
+export default authSlice.reducer;

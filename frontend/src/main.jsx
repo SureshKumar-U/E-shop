@@ -9,6 +9,8 @@ import Login from './pages/Login'
 import Signup from "./pages/Signup"
 import Cart from "./pages/CartPage"
 import Product from "./pages/ProductDetails"
+import CheckoutPage from './pages/checkoutPage.jsx'
+import ProtectedRoute from './components/protectedRoute.jsx'
 
 
 const router = createBrowserRouter([{
@@ -19,8 +21,8 @@ const router = createBrowserRouter([{
     {path: 'login',element:<Login/>},
     {path: 'signup',element:<Signup/>},
     {path: 'cart',element:<Cart/>},
-    {path: 'product/:id',element:<Product/>}
-    
+    {path: 'product/:id',element:<Product/>},
+    {path: "", element :<ProtectedRoute/>,children:[{path:"shipping", element:<CheckoutPage/>}] }
 
   ]
 }])

@@ -24,6 +24,7 @@ const getAllProducts = async (request, response) => {
     try {
         const { category } = request.query
         const isvalidCategory = productCategories.includes(category)
+        console.log(isvalidCategory)
         if (!isvalidCategory) {
             return response.status(400).json({ status: 400, message: "Invalid Product category" })
         }
