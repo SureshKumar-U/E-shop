@@ -22,7 +22,8 @@ const router = createBrowserRouter([{
     {path: 'signup',element:<Signup/>},
     {path: 'cart',element:<Cart/>},
     {path: 'product/:id',element:<Product/>},
-    {path: "", element :<ProtectedRoute/>,children:[{path:"shipping", element:<CheckoutPage/>}] }
+    {path: "", element :<ProtectedRoute/>,
+    children:[{path:"shipping", element:<CheckoutPage/>}] }
 
   ]
 }])

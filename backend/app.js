@@ -6,20 +6,16 @@ dotenv.config()
 import morgan from 'morgan'
 import {logger} from "./middlewares/loggerMiddleware.js"
 import {connectDB} from "./config/DbConfig.js"
-import productRoutes  from "./routes/product.routes.js"
-import userRoutes from "./routes/user.routes.js"
+import apiRoutes from "./routes/index.js"
 connectDB()
 const PORT = process.env.PORT || 8000
 app.use(morgan('dev'))
 app.use(corsConfiguration()) 
 app.use(express.json()) 
-const date = new Date()
+app.use('/api',apiRoutes)
 
-app.use("/api/v1/products", productRoutes)
-app.use("/api/v1/users", userRoutes)
 app.use("*", (req, res) => {
     res.status(404).json({ error: "Invalid Endpoint or Resource Not found" })
 })
-
 
 app.listen(PORT,()=>console.log(`server started on ${PORT}`))

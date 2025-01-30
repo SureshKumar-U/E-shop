@@ -1,12 +1,12 @@
-const userModel = require("./../models/usersModel")
-const jwt = require("jsonwebtoken")
+import userModel from "./../models/usersModel.js"
+import  jwt from "jsonwebtoken"
 
-const authMiddleware = (req, res) => {
-    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+export const authMiddleware = async(req, res) => {
 
+  console.log(req.cookie)
+    if (req.cookie.jwt) {
         try {
-            const Authheaders = req.headers.authorization.trim()
-            const token = Authheaders.split(' ')[1]
+            const token = req.cookie.jwt
             if (!token) {
                 return res.status(401).json({ status: 400, message: "Unauthorized user" })
             }
@@ -21,6 +21,15 @@ const authMiddleware = (req, res) => {
     }
     else {
         return res.status(401).json({ status: 401, message: "Unautorized user" })
+    }
+
+}
+
+export const admin = async(req,res)=>{
+    if(req.user && req.user.isAdmin){
+        next()
+    }else{
+        res.status(401).json({message:"Not authorized as admin"})
     }
 
 }

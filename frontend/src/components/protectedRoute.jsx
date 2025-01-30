@@ -7,7 +7,7 @@ const ProtectedRoute = ()=>{
    
     return (
         <>
-        {user ? <Outlet/> :<Navigate to="/"  replace/> }
+        {!user ? <Outlet/> :<Navigate to="/"  replace/> }
         </>
     )
 }

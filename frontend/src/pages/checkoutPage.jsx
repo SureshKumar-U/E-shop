@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { saveShippingAddress } from "../redux/slices/cartSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import Stepper from "../components/stepper"
 const CheckoutPage = ()=>{
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ const CheckoutPage = ()=>{
                        <h1 className=" text-xl font-bold text-black m-3">
                            Shipping
                        </h1>
+                       <Stepper/>
                        <div className="w-[500px] border border-gray-300 text-black bg-white rounded-sm shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
                            <div className="p-4">
                                <form className="space-y-2">
